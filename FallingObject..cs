@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class FallingObject : MonoBehaviour
 {
-    private GameController controller;
+    private ICatchHandler handler;
     private float floorY;
     private Transform basket;
     private bool isBlue;
 
-    public void Init(GameController controller, float floorY, Transform basket, bool isBlue)
+    public void Init(ICatchHandler handler, float floorY, Transform basket, bool isBlue)
     {
-        this.controller = controller;
+        this.handler = handler;
         this.floorY = floorY;
         this.basket = basket;
         this.isBlue = isBlue;
@@ -25,7 +25,7 @@ public class FallingObject : MonoBehaviour
     {
         if (other.transform == basket)
         {
-            controller.RegisterCatch(isBlue);
+            handler.RegisterCatch(isBlue);
             Destroy(gameObject);
         }
     }
